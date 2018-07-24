@@ -13,36 +13,21 @@
     </modules>
 
     <dependencies>
-        <!--核心包-->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>5.3.1</version>
+            <version>3.2.0</version>
         </dependency>
-        <!--一般分词器，适用于英文分词-->
         <dependency>
             <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-analyzers-common</artifactId>
-            <version>5.3.1</version>
+            <artifactId>lucene-analyzers</artifactId>
+            <version>3.2.0</version>
         </dependency>
-        <!--中文分词器-->
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-analyzers-smartcn</artifactId>
-            <version>5.3.1</version>
-        </dependency>
-
-        <!--对分词索引查询解析-->
-        <dependency>
-            <groupId>org.apache.lucene</groupId>
-            <artifactId>lucene-queryparser</artifactId>
-            <version>5.3.1</version>
-        </dependency>
-        <!--检索关键字高亮显示-->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-highlighter</artifactId>
-            <version>5.3.1</version>
+            <version>3.2.0</version>
         </dependency>
+
     </dependencies>
 </project>

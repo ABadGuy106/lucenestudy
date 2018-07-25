@@ -1,6 +1,7 @@
 package net.abadguy.lucene.util;
 
 import net.abadguy.lucene.entity.Article;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -93,16 +94,28 @@ public class LuceneUtil {
         return document;
     }
     //将document对象转化为JavaBean对象
-    public static Object documentToJavaBean() throws Exception{
-        return null;
+    public static Object documentToJavaBean(Document document,Class clazz) throws Exception{
+        Object object=clazz.newInstance();
+        Field[] fields=clazz.getDeclaredFields();
+        for(Field f:fields){
+            f.setAccessible(true);
+            String name=f.getName();
+            String value=document.get(name);
+            BeanUtils.setProperty(object,name,value);
+        }
+        return object;
     }
 
     //测试
     public static void main(String[] args) throws Exception{
         Article article=new Article(1,"测试","这是一个测试文本");
         Document document=LuceneUtil.javaBeanToDocument(article);
-        System.out.println(document.get("id"));
-        System.out.println(document.get("title"));
-        System.out.println(document.get("content"));
+//        System.out.println(document.get("id"));
+//        System.out.println(document.get("title"));
+//        System.out.println(document.get("content"));
+        Article article1= (Article) LuceneUtil.documentToJavaBean(document,Article.class);
+        System.out.println(article1);
+
+
     }
 }
